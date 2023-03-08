@@ -5,7 +5,7 @@ import './App.css'
 
 export default function App() {
   return (
-    <main>
+    <main className="container">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<StockOverviewPage /> }/>
