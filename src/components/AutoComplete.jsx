@@ -5,6 +5,21 @@ export const AutoComplete=()=>{
   const [search,setSearch]=useState("")
   const [results,setResults]=useState([])
 
+
+  const renderDropdown=()=>{
+    const dropDownClass= search ? "show" : null
+
+    return (
+      <ul style={{height:"500px", overflowY:"scroll",overflowX:"hidden",cursor:"pointer"}} className={`dropdown-menu ${dropDownClass}`}>
+        {results.map((result)=>{
+        return(
+          <li className="dropdown-item">{result.description} ({result.symbol})</li>
+        )
+        
+        })}
+      </ul>
+    )
+  }
   useEffect(()=>{
     let isMounted=true
     const fetchData=async() =>{
@@ -15,7 +30,7 @@ export const AutoComplete=()=>{
           }
         })
         if(isMounted){
-          setResult(response.data)
+          setResults(response.data.result)
         }
         console.log(response)
         
@@ -25,6 +40,8 @@ export const AutoComplete=()=>{
     }
     if(search.length > 0){
       fetchData();
+    }else{
+      setResults([])
     }
     return ()=> (isMounted = false)
   },[search])
@@ -32,11 +49,7 @@ export const AutoComplete=()=>{
   <div className="form-floating dropdown">
     <input style={{backgroundColor:"rgba(145,158,171,0.04)"}} id="search" type="text" className="form-control" placeholder="Search" autoComplete="off" value={search} onChange={(e)=>setSearch(e.target.value)}></input>
     <label htmlFor="search">Search</label>
-    <ul className="dropdown-menu">
-      <li>Stock1</li>
-      <li>Stock2</li>
-      <li>Stock3</li>
-    </ul>
+      {renderDropdown()}
   </div>
   </div>
 }
