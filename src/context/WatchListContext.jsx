@@ -6,7 +6,18 @@ export const WatchListContextProvider=(props)=>{
   
    const [watchList,setWatchList]= useState(['GOOGL',"MSFT","AMZN"]);
 
-  return <WatchListContext.Provider value={{watchList}}>
+  const addStock=(stock)=>{
+    if(watchList.indexOf(stock) === -1){
+         setWatchList([...watchList,stock])
+    }
+  }
+
+  const deleteStock=(stock)=> {
+    setWatchList(watchList.filter((el)=>{
+      return el!==stock
+    }))
+  }
+  return <WatchListContext.Provider value={{watchList,addStock,deleteStock}}>
     {props.children}
   </WatchListContext.Provider>
 }
