@@ -13,7 +13,7 @@ export const AutoComplete=()=>{
       <ul style={{height:"500px", overflowY:"scroll",overflowX:"hidden",cursor:"pointer"}} className={`dropdown-menu ${dropDownClass}`}>
         {results.map((result)=>{
         return(
-          <li className="dropdown-item">{result.description} ({result.symbol})</li>
+          <li key={result.symbol } className="dropdown-item">{result.description} ({result.symbol})</li>
         )
         
         })}
