@@ -17,7 +17,15 @@ export const StockChart=({chartData,symbol})=>{
       }
     },
     xaxis:{
-      type:"datetime"
+      type:"datetime",
+      labels:{
+        datetimeUTC:false
+      }
+    },
+    tootlip:{
+      x:{
+        format:"MMM ddd HH:MM"
+      }
     }
   }
   const series=[{
