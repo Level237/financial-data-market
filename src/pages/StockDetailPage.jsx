@@ -7,13 +7,15 @@ const formatData=(data)=>{
   return data.t.map((el,index)=>{
     return {
       x:el * 1000,
-      y:data.c[index]
+      y:Math.floor(data.c[index])
     }
   })
 }
 export const StockDetailPage=()=>{
   const {symbol}=useParams()
   const [chartData,setChartData]=useState()
+
+  
   useEffect(()=>{
     const fetchData=async()=>{
       
@@ -21,7 +23,7 @@ export const StockDetailPage=()=>{
       const currentTime=Math.floor(date.getTime() / 1000);
       let oneDay;
       if(date.getDay() === 6){
-        oneDay=currentTime - 2 * 24 * 60 * 60
+        oneDay=currentTime - 6 * 24 * 60 * 60
       }else if(date.getDay() === 0){
         oneDay=currentTime - 3 * 24 * 60 * 60
       }else{
