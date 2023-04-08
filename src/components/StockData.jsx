@@ -20,19 +20,49 @@ export const StockData=({symbol})=>{
         
       }
     }
+    fetchData()
+    return ()=>(isMounted = false);
   },[symbol])
   return <div>
     {stockData && (
       <div className="row border bg-white rounded shadow-sm p-4 mt-5">
         <div className="col">
           <div>
-          <span className="fw-bold">name:{stockData.name}</span>
-
+              <span className="fw-bold">name:{stockData.name}</span>
+          </div>
+           <div>
+              <span className="fw-bold">country:{stockData.country}</span>
+          </div>
+           <div>
+              <span className="fw-bold">ticker:{stockData.ticker}</span>
           </div>
         </div>
-        <div className="col"></div>
-        <div className="col"></div>
+        <div className="col">
+          <div>
+              <span className="fw-bold">Exchange:{stockData.exchange}</span>
+          </div>
+          <div>
+              <span className="fw-bold">Industry:{stockData.finnhubIndustry}</span>
+          </div>
+          <div>
+              <span className="fw-bold">IPO:{stockData.ipo}</span>
+          </div>
+        </div>
+        <div className="col">
+          <div>
+              <span className="fw-bold">MarketCap:{stockData.marketCapitalization}</span>
+          </div>
+
+          <div>
+              <span className="fw-bold">Shares Outstading:{stockData.shareOutstanding}</span>
+          </div>
+
+          <div>
+              <span className="fw-bold">url: <a href={stockData.weburl}>{stockData.weburl}</a>  </span>
+          </div>
+        </div>
       </div>
-    )}
+    )
+    }
   </div>
 }
